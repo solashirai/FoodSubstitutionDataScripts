@@ -6,3 +6,4 @@ numpy
 spacy
 scrapy
 bs4
+gensim
