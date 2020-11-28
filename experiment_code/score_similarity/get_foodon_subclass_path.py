@@ -4,14 +4,14 @@ import pickle
 
 class FoodSubclassPaths:
 
-    def run(self,
-        foodon_links = ['../data/in/foodon-links-1.ttl'],
-        food_index_file = '../data/out/food_index_dict.pkl',
-        save_file = '../data/out/foodon_to_root_path.pkl',
-        foodon_file = '../data/in/food_on.owl'):
+    def run(self,*,
+            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            food_index_file = '../data/out/food_index_dict.pkl',
+            save_file = '../data/out/foodon_to_root_path.pkl',
+            foodon_file = '../data/in/food_on.owl'):
 
         g = rdflib.Graph()
-        for input_file in foodon_links:
+        for input_file in food_link_files:
             g.parse(input_file, format='ttl')
         foodon_graph = rdflib.Graph()
         foodon_graph.parse(foodon_file)#, format='ttl')

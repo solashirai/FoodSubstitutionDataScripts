@@ -10,17 +10,17 @@ from august_experiments.recipe_to_foodon_proportion_vector import RecToVec
 
 class FoodCoocSimScore:
 
-    def run(self,
-    foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
-    index_dict_file = '../data/out/food_index_dict.pkl',
-    foodkg_data_files = ['../data/in/recipes-1.ttl'],
-    foodon_links = ['../data/in/foodon-links-1.ttl'],
-    save_coocurrence_matrix = '../data/out/food_coocurrence_mat.pkl',
-    save_ocurrence_dict = '../data/out/food_ocurrence_dict.pkl',
-    save_cooc_sim_dict = '../data/out/food_cooc_sim_dict.pkl',
-    save_recipe_data = '../data/out/recipe_ingname_list.json',
-    has_recipe_data = False,
-    recipe_data = '../data/out/recipe_ingname_list.json'):
+    def run(self,*,
+            foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
+            index_dict_file = '../data/out/food_index_dict.pkl',
+            foodkg_data_files = ['../data/in/recipes-1.ttl'],
+            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            save_coocurrence_matrix = '../data/out/food_coocurrence_mat.pkl',
+            save_ocurrence_dict = '../data/out/food_ocurrence_dict.pkl',
+            save_cooc_sim_dict = '../data/out/food_cooc_sim_dict.pkl',
+            save_recipe_data = '../data/out/recipe_ingname_list.json',
+            has_recipe_data = False,
+            recipe_data = '../data/out/recipe_ingname_list.json'):
 
         with open(foodon_to_root_file, 'rb') as f:
             foodon_to_root_dict = pickle.load(f)
@@ -34,7 +34,7 @@ class FoodCoocSimScore:
             for data_files in foodkg_data_files:
                 print(data_files)
                 g = rdflib.Graph()
-                for foodon_link_file in foodon_links:
+                for foodon_link_file in food_link_files:
                     g.parse(foodon_link_file, format='ttl')
                 g.parse(data_files, format='ttl')
                 R2V = RecToVec(graph=g, food_index_file=index_dict_file)
@@ -100,7 +100,7 @@ class FoodCoocSimScore:
                 recipes = json.load(f)
 
             g = rdflib.Graph()
-            for data_files in foodon_links:
+            for data_files in food_link_files:
                 print(data_files)
                 for file in data_files:
                     g.parse(file, format='ttl')

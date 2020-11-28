@@ -9,12 +9,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 class FoodEmbeddingSims:
 
-    def run(self,
-    spacy_savefile = '../data/out/spacy_ing_sim.pkl',
-    w2v_savefile = '../data/out/w2v_ing_sim.pkl',
-    substitution_data_file = '../data/in/foodsubs_data.json',
-    w2v_file = '../data/in/r1m_word2vec/vocab.bin',
-        food_link_files = ['../data/in/foodon-links-1.ttl']):
+    def run(self, *,
+            spacy_savefile = '../data/out/spacy_ing_sim.pkl',
+            w2v_savefile = '../data/out/w2v_ing_sim.pkl',
+            substitution_data_file = '../data/in/foodsubs_data.json',
+            w2v_file = '../data/in/r1m_word2vec/vocab.bin',
+            food_link_files = ['../data/in/foodon-links-1.ttl']):
 
         g = rdflib.Graph()
         for file in food_link_files:

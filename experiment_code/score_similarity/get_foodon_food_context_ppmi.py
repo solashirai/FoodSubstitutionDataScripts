@@ -26,12 +26,12 @@ IGNORE_INGS = {food_ns[ing] for ing in [
 
 class FoodPPMISimScore:
 
-    def run(self,
-    foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
-    recipes_file = '../data/out/recipe_ingname_list.json',
-    index_dict_file = '../data/out/food_index_dict.pkl',
-    food_link_files = ['../data/in/foodon-links-1.ttl'],
-    save_ppmi_dict = '../data/out/foodon_ppmi_sim_dict.pkl',):
+    def run(self, *,
+            foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
+            recipes_file = '../data/out/recipe_ingname_list.json',
+            index_dict_file = '../data/out/food_index_dict.pkl',
+            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            save_ppmi_dict = '../data/out/foodon_ppmi_sim_dict.pkl'):
 
         with open(foodon_to_root_file, 'rb') as f:
             foodon_to_root_dict = pickle.load(f)
