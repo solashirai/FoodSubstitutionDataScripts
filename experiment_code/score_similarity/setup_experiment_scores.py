@@ -1,7 +1,7 @@
-from cleaned_code.score_similarity.get_foodon_food_context_ppmi import FoodPPMISimScore
-from cleaned_code.score_similarity.get_foodon_food_occurrences import FoodCoocSimScore
-from cleaned_code.score_similarity.get_foodon_subclass_path import FoodSubclassPaths
-from cleaned_code.score_similarity.get_spacy_and_w2v_ing_sims import FoodEmbeddingSims
+from experiment_code.score_similarity.get_foodon_food_context_ppmi import FoodPPMISimScore
+from experiment_code.score_similarity.get_foodon_food_occurrences import FoodCoocSimScore
+from experiment_code.score_similarity.get_foodon_subclass_path import FoodSubclassPaths
+from experiment_code.score_similarity.get_spacy_and_w2v_ing_sims import FoodEmbeddingSims
 
 if __name__ == '__main__':
     food_link_files = ['../data/in/foodon-links-1.ttl']

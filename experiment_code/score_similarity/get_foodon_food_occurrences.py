@@ -5,7 +5,7 @@ import numpy as np
 import json
 import time
 from scipy.sparse import csr_matrix, lil_matrix
-from august_experiments.recipe_to_foodon_proportion_vector import RecToVec
+from experiment_code.score_similarity.rec_to_vec import RecToVec
 
 
 class FoodCoocSimScore:

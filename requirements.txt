@@ -1,0 +1,8 @@
+rdflib
+pickle
+sklearn
+scipy
+numpy
+spacy
+scrapy
+bs4

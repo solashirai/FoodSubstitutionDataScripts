@@ -2,9 +2,7 @@ import en_core_web_lg
 import json
 import pickle
 import numpy as np
-from collections import defaultdict
 import rdflib
-from sklearn.metrics.pairwise import cosine_similarity
 
 
 class FoodEmbeddingSims:
