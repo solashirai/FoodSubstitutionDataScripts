@@ -14,7 +14,7 @@ class SubsSpider(scrapy.Spider):
     def parse(self, response):
         prefix = 'http://www.foodsubs.com/'
         page = "_".join(response.url.split("/")[-2:])
-        filename = 'subs_%s.html' % page
+        filename = 'scraped_pages/subs_%s.html' % page
 
         with open(filename, 'wb') as f:
            f.write(response.body)
