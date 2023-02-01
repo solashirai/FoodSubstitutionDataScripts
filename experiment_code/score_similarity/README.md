@@ -1,6 +1,6 @@
 Run the setup_experiment_scores script to compute scores for ingredient substitutability using a few different methods.
 
-Running the script requires you to collect several pieces of data and place them into the data/in directory.
+Prior to running the code, make sure that you have created directories for input and output data. By default the code expects these to be under the experiment_code folder, as ```experiment_code/data/in/``` and ```experiment_code/data/out/```. Running the script requires you to collect several pieces of data and place them into the data/in directory.
 
 ### FOODKG data
 
