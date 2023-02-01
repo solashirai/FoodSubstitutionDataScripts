@@ -15,9 +15,14 @@ point the foodkg_data_files variable to your recipe data and food_link_files to 
 
 ### FoodOn
 
-Download the FoodOn ontology, e.g. by using [OntoFox](http://ontofox.hegroup.org/). If using OntoFox, set the top-level 
-source term URI as http://purl.obolibrary.org/obo/FOODON_00001002 and make sure to include the 
-rdfs:subClassOf relation.
+Download the FoodOn ontology, e.g. by using [OntoFox](http://ontofox.hegroup.org/). If using OntoFox, set the low level 
+source term URI as
+```
+http://purl.obolibrary.org/obo/FOODON_00001002 
+includeAllChildren
+```
+
+and include the rdfs:subClassOf annotations.
 
 Move the downloaded FoodOn ontology to data/in, and make sure the foodon_file variable in the setup_experiment_scores
 script is pointing to the right file.
