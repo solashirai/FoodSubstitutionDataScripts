@@ -14,7 +14,7 @@ ignore_foodkg_ing_strings = {
 }
 ing_ns = rdflib.Namespace('http://idea.rpi.edu/heals/kb/ingredientname/')
 
-g = rdflib.Graph()
+g = rdflib.ConjunctiveGraph()
 for file in food_link_files:
     g.parse(file, format='ttl')
 print("files loaded")
