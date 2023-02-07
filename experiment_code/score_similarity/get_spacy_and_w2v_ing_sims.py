@@ -14,7 +14,7 @@ class FoodEmbeddingSims:
             w2v_file = '../data/in/r1m_word2vec/vocab.bin',
             food_link_files = ['../data/in/foodon-links-1.ttl']):
 
-        g = rdflib.Graph()
+        g = rdflib.ConjunctiveGraph()
         for file in food_link_files:
             g.parse(file, format='ttl')
         food_to_foodon = dict()
