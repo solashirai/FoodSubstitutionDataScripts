@@ -27,13 +27,13 @@ class FoodCoocSimScore:
 
         foodon_related_ings = defaultdict(lambda: set())
         ing_count = defaultdict(lambda: 0)
-        R2V = RecToVec(graph=rdflib.Graph(), food_index_file=index_dict_file)
+        R2V = RecToVec(graph=rdflib.ConjunctiveGraph(), food_index_file=index_dict_file)
         ing_cooc_counts = lil_matrix((len(R2V.food_index.keys()), len(R2V.food_index.keys())))
         raw_ings_in_recipes = []
         if not has_recipe_data:
             for data_files in foodkg_data_files:
                 print(data_files)
-                g = rdflib.Graph()
+                g = rdflib.ConjunctiveGraph()
                 for foodon_link_file in food_link_files:
                     g.parse(foodon_link_file, format='ttl')
                 g.parse(data_files, format='ttl')
