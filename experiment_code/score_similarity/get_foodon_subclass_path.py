@@ -10,7 +10,7 @@ class FoodSubclassPaths:
             save_file = '../data/out/foodon_to_root_path.pkl',
             foodon_file = '../data/in/food_on.owl'):
 
-        g = rdflib.Graph()
+        g = rdflib.ConjunctiveGraph()
         for input_file in food_link_files:
             g.parse(input_file, format='ttl')
         foodon_graph = rdflib.Graph()
