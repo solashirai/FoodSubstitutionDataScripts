@@ -38,7 +38,7 @@ class FoodPPMISimScore:
 
         ################
 
-        g = rdflib.Graph()
+        g = rdflib.ConjunctiveGraph()
         for file in food_link_files:
             g.parse(file, format='ttl')
         food_to_foodon = dict()
