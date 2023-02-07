@@ -22,7 +22,7 @@ print("files loaded")
 food_to_foodon = dict()
 relevant_food_names_as_str = set()
 str_to_uri = dict()
-for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):
+for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass')):
     food_to_foodon[subj] = obj
     str_split_name = str(subj)[44:]
     str_split_name = str_split_name.replace("%20", " ")
