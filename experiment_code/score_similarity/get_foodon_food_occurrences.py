@@ -99,7 +99,7 @@ class FoodCoocSimScore:
             with open(recipe_data, 'r') as f:
                 recipes = json.load(f)
 
-            g = rdflib.Graph()
+            g = rdflib.ConjunctiveGraph()
             for data_files in food_link_files:
                 print(data_files)
                 for file in data_files:
@@ -167,7 +167,7 @@ class FoodCoocSimScore:
         def l2_norm(mat):
             return np.sqrt(np.sum(mat.multiply(mat), axis=1))
 
-        R2V = RecToVec(graph=rdflib.Graph(), food_index_file=index_dict_file)
+        R2V = RecToVec(graph=rdflib.ConjunctiveGraph(), food_index_file=index_dict_file)
         ing_cooc_counts = ing_cooc_counts.tocsr()
         divides = np.ones((ing_cooc_counts.shape[0], 1))
         ing_probs = ing_cooc_counts/divides
