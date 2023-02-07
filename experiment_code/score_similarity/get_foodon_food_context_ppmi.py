@@ -55,7 +55,7 @@ class FoodPPMISimScore:
                     foodon_super_to_root[foodon_food].add(item)
         foodon_super_to_root = {key: frozenset(val) for key, val in foodon_super_to_root.items()}
 
-        R2V = RecToVec(graph=rdflib.Graph(), food_index_file=index_dict_file)
+        R2V = RecToVec(graph=rdflib.ConjunctiveGraph(), food_index_file=index_dict_file)
 
         with open(recipes_file, 'r') as f:
             recipe_list = json.load(f)
