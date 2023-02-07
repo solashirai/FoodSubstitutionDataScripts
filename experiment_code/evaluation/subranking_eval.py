@@ -47,7 +47,7 @@ with open(foodon_superclasses_file, 'rb') as f:
     foodon_superclasses = pickle.load(f)
 
 
-g = rdflib.Graph()
+g = rdflib.ConjunctiveGraph()
 for file in food_link_files:
     g.parse(file, format='ttl')
 food_to_foodon = dict()
