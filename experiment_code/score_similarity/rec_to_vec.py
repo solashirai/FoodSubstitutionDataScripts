@@ -23,7 +23,7 @@ class RecToVec:
         self.foodon_ing_order = []
         for foodkg_food in graph.subjects(predicate=rdflib.namespace.RDF['type'], object=food_ns['ingredientname']):
             if foodkg_food is not None:
-                equiv_food = graph.value(subject=foodkg_food, predicate=food_ns['equivalentFoodOnClass'])
+                equiv_food = graph.value(subject=foodkg_food, predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass'))#food_ns['equivalentFoodOnClass'])
                 if equiv_food:
                     self.ing_to_foodon_dict[foodkg_food] = equiv_food
                     if equiv_food not in self.foodon_ing_order:
