@@ -19,7 +19,7 @@ class FoodEmbeddingSims:
             g.parse(file, format='ttl')
         food_to_foodon = dict()
         unique_foodon = set()
-        for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):
+        for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass')):#rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):
             food_to_foodon[subj] = obj
             unique_foodon.add(obj)
 
