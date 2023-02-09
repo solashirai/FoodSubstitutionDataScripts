@@ -39,11 +39,13 @@ class FoodSubclassPaths:
         class_count = len(class_to_index_dict.keys())
         print('number of classes: ', class_count)
 
+        #ns2:equivalentFoodOnClass
         q = g.query("""
         prefix ns2: <http://idea.rpi.edu/heals/kb/>
+        prefix owl: <http://www.w3.org/2002/07/owl#>
         SELECT ?foodlink
         WHERE {
-            ?subj ns2:equivalentFoodOnClass ?foodlink .
+            ?subj owl:equivalentClass ?foodlink .
         }
         """)
 
