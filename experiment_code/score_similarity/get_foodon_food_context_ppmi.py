@@ -40,7 +40,7 @@ class FoodPPMISimScore:
 
         g = rdflib.ConjunctiveGraph()
         for file in food_link_files:
-            g.parse(file, format='ttl')
+            g.parse(file, format='trig')
         food_to_foodon = dict()
 
         for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass')):#rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):

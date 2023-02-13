@@ -5,9 +5,10 @@ import pickle
 recipe_level = False
 open_file = 'recipe_level_comment_content_with_keywords.pkl'
 
-save_file = 'data/out/fooddotcom_review_sub_data.json'
+save_file = '../experiment_code/data/out/fooddotcom_review_sub_data.json'
+save_file_uri = '../experiment_code/data/out/fooddotcom_review_sub_data_URIs.json'
 
-food_link_files = ['../experiment_code/data/in/foodon-links-1.ttl']
+food_link_files = ['../experiment_code/data/in/foodon-links.trig']
 
 ignore_foodkg_ing_strings = {
     'water', 'boiling water', 'cold water', 'liquid'
@@ -16,7 +17,7 @@ ing_ns = rdflib.Namespace('http://idea.rpi.edu/heals/kb/ingredientname/')
 
 g = rdflib.ConjunctiveGraph()
 for file in food_link_files:
-    g.parse(file, format='ttl')
+    g.parse(file, format='trig')
 print("files loaded")
 
 food_to_foodon = dict()
@@ -96,15 +97,19 @@ for tup_ind, tups in enumerate(raw_tups):
     elif len(matched_ings_to_foodkg) > 1:
         print(src_ing, ':', to_ing, matched_ings_to_foodkg)
 
+tup_uris = list(set([(tup[1], tup[2]) for tup in all_tups]))
 if recipe_level:
     all_tups = list(set([(tup[0], tup[1][44:].replace("%20", " "), tup[2][44:].replace("%20", " ")) for tup in all_tups]))
     all_tups = [{'recipeID':tup[0], 'fromIng': tup[1], 'toIng': tup[2]} for tup in all_tups]
 else:
+
     all_tups = list(set([(tup[0][44:].replace("%20", " "), tup[1][44:].replace("%20", " ")) for tup in all_tups]))
     all_tups = [{'fromIng': tup[0], 'toIng': tup[1]} for tup in all_tups]
 print('number of src ings: ', len(found_source_names))
 print('simple match counts: ', len(all_tups))
 # print('10 examples: ', all_tups[:10])
 
+with open(save_file_uri, 'w') as f:
+    json.dump(tup_uris, f)
 with open(save_file, 'w') as f:
     json.dump(all_tups, f)

@@ -35,8 +35,8 @@ class FoodCoocSimScore:
                 print(data_files)
                 g = rdflib.ConjunctiveGraph()
                 for foodon_link_file in food_link_files:
-                    g.parse(foodon_link_file, format='ttl')
-                g.parse(data_files, format='ttl')
+                    g.parse(foodon_link_file, format='trig')
+                g.parse(data_files, format='trig')
                 R2V = RecToVec(graph=g, food_index_file=index_dict_file)
                 print('loaded')
 

@@ -5,14 +5,14 @@ import pickle
 class FoodSubclassPaths:
 
     def run(self,*,
-            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            food_link_files = ['../data/in/foodon-links.trig'],
             food_index_file = '../data/out/food_index_dict.pkl',
             save_file = '../data/out/foodon_to_root_path.pkl',
             foodon_file = '../data/in/food_on.owl'):
 
         g = rdflib.ConjunctiveGraph()
         for input_file in food_link_files:
-            g.parse(input_file, format='ttl')
+            g.parse(input_file, format='trig')
         foodon_graph = rdflib.Graph()
         foodon_graph.parse(foodon_file)#, format='ttl')
 
@@ -60,6 +60,8 @@ class FoodSubclassPaths:
 
             for obj in graph.objects(prev_subj, rdflib.namespace.RDFS['subClassOf']):
                 if (obj, rdflib.namespace.RDF['type'], rdflib.namespace.OWL['Class']) in graph:
+                    if obj in to_return:
+                        continue
                     to_return = to_return.union(get_path_items(graph, obj))
             return to_return
 
