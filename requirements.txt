@@ -6,4 +6,4 @@ numpy
 spacy
 scrapy
 bs4
-gensim
+gensim==3.8.3
