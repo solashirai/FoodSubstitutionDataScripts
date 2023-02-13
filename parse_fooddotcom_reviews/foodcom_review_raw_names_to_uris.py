@@ -97,7 +97,7 @@ for tup_ind, tups in enumerate(raw_tups):
     elif len(matched_ings_to_foodkg) > 1:
         print(src_ing, ':', to_ing, matched_ings_to_foodkg)
 
-tup_uris = list(set([(tup[1], tup[2]) for tup in all_tups]))
+tup_uris = list(set([(tup[0], tup[1]) for tup in all_tups]))
 if recipe_level:
     all_tups = list(set([(tup[0], tup[1][44:].replace("%20", " "), tup[2][44:].replace("%20", " ")) for tup in all_tups]))
     all_tups = [{'recipeID':tup[0], 'fromIng': tup[1], 'toIng': tup[2]} for tup in all_tups]

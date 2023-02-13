@@ -10,13 +10,13 @@ class FoodEmbeddingSims:
     def run(self, *,
             spacy_savefile = '../data/out/spacy_ing_sim.pkl',
             w2v_savefile = '../data/out/w2v_ing_sim.pkl',
-            substitution_data_file = '../data/in/fooddotcom_review_sub_data_URIs.json',
+            substitution_data_file = '../data/out/fooddotcom_review_sub_data_URIs.json',
             w2v_file = '../data/in/r1m_word2vec/vocab.bin',
-            food_link_files = ['../data/in/foodon-links-1.ttl']):
+            food_link_files = ['../data/in/foodon-links.trig']):
 
         g = rdflib.ConjunctiveGraph()
         for file in food_link_files:
-            g.parse(file, format='ttl')
+            g.parse(file, format='trig')
         food_to_foodon = dict()
         unique_foodon = set()
         for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass')):#rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):

@@ -30,7 +30,7 @@ class FoodPPMISimScore:
             foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
             recipes_file = '../data/out/recipe_ingname_list.json',
             index_dict_file = '../data/out/food_index_dict.pkl',
-            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            food_link_files = ['../data/in/foodon-links.trig'],
             save_ppmi_dict = '../data/out/foodon_ppmi_sim_dict.pkl'):
 
         with open(foodon_to_root_file, 'rb') as f:
@@ -109,7 +109,10 @@ class FoodPPMISimScore:
 
         finished_count = 0
         for ing in relevant_foods:
-            ing_index = R2V.food_index[ing]
+            ing_index = R2V.index_for_ing(ing)
+            if ing_index is None:
+                print("!?!?", ing, ing in foodon_to_root_dict.keys(), ing in R2V.food_index.keys())
+                continue
             ing_contexts = ing_context_ocurrences[ing]
             ing_context_mat = ing_context_ocurrences.get(ing, None)
             if ing_context_mat is None:
@@ -144,7 +147,9 @@ class FoodPPMISimScore:
         cosine_sim = ing_to_context_ppmi.dot(ing_to_context_ppmi.T) / (l2n.dot(l2n.T))
 
         for ing1 in relevant_foods:
-            ing_index = R2V.food_index[ing]
+            ing_index = R2V.index_for_ing(ing)
+            if ing_index is None:
+                continue
             ing_to_ing_ppmi_sim[ing1] = dict()
             irow = ing_to_context_ppmi[ing_index]
 

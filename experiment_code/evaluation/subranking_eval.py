@@ -16,10 +16,10 @@ IGNORE_INGS = {food_ns[ing] for ing in [
     'FOODON_03306739', #black pepper
     'FOODON_00001650', #black pepper food product
 ]}
-food_link_files = ['../data/in/foodon-links-1.ttl']
+food_link_files = ['../data/in/foodon-links.trig']
 
 substitution_data_files = [
-    '../data/in/foodsubs_data.json',
+    '../data/out/fooddotcom_review_sub_data_URIs.json',
     ]
 
 foodon_superclasses_file = '../data/out/foodon_to_root_path.pkl'
@@ -49,10 +49,11 @@ with open(foodon_superclasses_file, 'rb') as f:
 
 g = rdflib.ConjunctiveGraph()
 for file in food_link_files:
-    g.parse(file, format='ttl')
+    g.parse(file, format='trig')
 food_to_foodon = dict()
 test_foodon_ings = set()
-for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):
+# for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://idea.rpi.edu/heals/kb/equivalentFoodOnClass')):
+for subj, obj in g.subject_objects(predicate=rdflib.URIRef('http://www.w3.org/2002/07/owl#equivalentClass')):
     food_to_foodon[subj] = obj
     test_foodon_ings.add(obj)
 
@@ -224,25 +225,26 @@ def mrr_map_new(opt, do_foodon_filtering):
     print('recallrate at 10: ', in_top_10/len(scraped_subs_dict.keys()))
     print('mean average precision: ', np.mean(ave_p))
     print('formatted')
-    print(round(np.mean(ave_p), 3),' & ',round(np.mean(rank_scores), 3),' & ',round(in_top_5/len(scraped_subs_dict.keys()), 3),' & ',round(in_top_10/len(scraped_subs_dict.keys()), 3))
+    print("MAP   \tMRR   \tRR@5  \tRR@10")
+    print(round(np.mean(ave_p), 3),'\t',round(np.mean(rank_scores), 3),'\t',round(in_top_5/len(scraped_subs_dict.keys()), 3),'\t',round(in_top_10/len(scraped_subs_dict.keys()), 3))
     return round(np.mean(ave_p), 3)
 
-print("0")
+print("DIISH heuristic")
 print('filtering...')
 mrr_map_new(opt=0, do_foodon_filtering=True)
 
-print("1")
+print("word2vec")
 print('filtering...')
 mrr_map_new(opt=1, do_foodon_filtering=True)
 
-print("2")
+print("spacy")
 print('filtering...')
 mrr_map_new(opt=2, do_foodon_filtering=True)
 
-print("3")
+print("co-occurrence")
 print('filtering...')
 mrr_map_new(opt=3, do_foodon_filtering=True)
 
-print("4")
+print("ppmi")
 print('filtering...')
 mrr_map_new(opt=4, do_foodon_filtering=True)

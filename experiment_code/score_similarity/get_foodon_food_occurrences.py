@@ -13,8 +13,8 @@ class FoodCoocSimScore:
     def run(self,*,
             foodon_to_root_file = '../data/out/foodon_to_root_path.pkl',
             index_dict_file = '../data/out/food_index_dict.pkl',
-            foodkg_data_files = ['../data/in/recipes-1.ttl'],
-            food_link_files = ['../data/in/foodon-links-1.ttl'],
+            foodkg_data_files = ['../data/in/foodkg-core.nt'],
+            food_link_files = ['../data/in/foodon-links.trig'],
             save_coocurrence_matrix = '../data/out/food_coocurrence_mat.pkl',
             save_ocurrence_dict = '../data/out/food_ocurrence_dict.pkl',
             save_cooc_sim_dict = '../data/out/food_cooc_sim_dict.pkl',
@@ -36,7 +36,7 @@ class FoodCoocSimScore:
                 g = rdflib.ConjunctiveGraph()
                 for foodon_link_file in food_link_files:
                     g.parse(foodon_link_file, format='trig')
-                g.parse(data_files, format='trig')
+                g.parse(data_files, format='nt')
                 R2V = RecToVec(graph=g, food_index_file=index_dict_file)
                 print('loaded')
 
@@ -75,10 +75,10 @@ class FoodCoocSimScore:
                     for i in range(len(ings)):
                         ing_set = ings_and_related[i]
                         for ing1 in ing_set:
-                            ing_count[ing1] += 1
                             i_ind = R2V.index_for_ing(ing=ing1)
                             if i_ind is None:
                                 continue
+                            ing_count[ing1] += 1
                             for j in range(i+1, len(ings)):
                                 ing_set2 = ings_and_related[j]
                                 for ing2 in ing_set2:

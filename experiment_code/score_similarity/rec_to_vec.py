@@ -96,7 +96,7 @@ class RecToVec:
         return self.ing_order[index]
 
     def index_for_ing(self, ing):
-        return self.food_index[ing]
+        return self.food_index.get(ing, None)
 
     def create_substitution_matrix(self, ings: List[rdflib.URIRef], weights: List[float],
                                    to_remove_ing: rdflib.URIRef, to_remove_wt: float, only_foodon_classes=False):

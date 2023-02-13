@@ -33,8 +33,6 @@ class FoodSubclassPaths:
         for res in class_count:
             class_to_index_dict[res.food] = counter
             counter += 1
-        with open(food_index_file, 'wb') as f:
-            pickle.dump(class_to_index_dict, f)
 
         class_count = len(class_to_index_dict.keys())
         print('number of classes: ', class_count)
@@ -69,6 +67,8 @@ class FoodSubclassPaths:
         count = 0
         for res in q:
             food = res.foodlink
+            if food not in class_to_index_dict.keys():
+                class_to_index_dict[food] = len(class_to_index_dict)
             if food in food_path_dict.keys():
                 continue
             pathset = get_path_items(foodon_graph, food)
@@ -82,3 +82,6 @@ class FoodSubclassPaths:
         print('finished, saving...')
         with open(save_file, 'wb') as f:
             pickle.dump(food_path_dict, f)
+
+        with open(food_index_file, 'wb') as f:
+            pickle.dump(class_to_index_dict, f)
