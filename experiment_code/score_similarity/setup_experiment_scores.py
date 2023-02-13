@@ -14,12 +14,12 @@ if __name__ == '__main__':
     # if something other than the default directories/filenames for outputs of each step are used,
     # they should be set as arguments for the classes.
 
-    # print('initial setup')
-    # make_min(in_files=full_foodkg_data_files, out_file='../data/in/min-foodkg-core.nt')
-    # FoodSubclassPaths().run(foodon_file=foodon_file, food_link_files=food_link_files)
-    # print('reformat recipe data, get co-occurrence similarity score')
-    # FoodCoocSimScore().run(food_link_files=food_link_files, foodkg_data_files=foodkg_data_files)
-    # print('get PPMI similarity score')
-    # FoodPPMISimScore().run(food_link_files=food_link_files)
+    print('initial setup')
+    make_min(in_files=full_foodkg_data_files, out_file='../data/in/min-foodkg-core.nt')
+    FoodSubclassPaths().run(foodon_file=foodon_file, food_link_files=food_link_files)
+    print('reformat recipe data, get co-occurrence similarity score')
+    FoodCoocSimScore().run(food_link_files=food_link_files, foodkg_data_files=foodkg_data_files)
+    print('get PPMI similarity score')
+    FoodPPMISimScore().run(food_link_files=food_link_files)
     print('get word2vec and spacy embedding similarity scores')
     FoodEmbeddingSims().run(w2v_file=w2v_file, food_link_files=food_link_files)
