@@ -111,7 +111,6 @@ class FoodPPMISimScore:
         for ing in relevant_foods:
             ing_index = R2V.index_for_ing(ing)
             if ing_index is None:
-                print("!?!?", ing, ing in foodon_to_root_dict.keys(), ing in R2V.food_index.keys())
                 continue
             ing_contexts = ing_context_ocurrences[ing]
             ing_context_mat = ing_context_ocurrences.get(ing, None)
